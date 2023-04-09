@@ -13,7 +13,7 @@ function Weather(props)
 
     useEffect(() => {
         setTempType(props.tempType)
-        setCity(formatString(props.city))
+        setCity(props.city)
         setWeatherType(props.forecast.weather[0].main)
         setDescription(props.forecast.weather[0].description)
     }, [])
@@ -22,11 +22,6 @@ function Weather(props)
         setTemperature(adjustTemp(props.forecast.main.temp))
         setFeelsLike(adjustTemp(props.forecast.main.feels_like));
     }, [tempType])
-
-    const formatString = (string) =>
-    {
-        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
-    }
 
     const adjustTemp = (temp) =>
     {

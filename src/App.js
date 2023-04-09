@@ -10,7 +10,6 @@ function App()
   const[forecastData, setForecastData] = useState();
   const[currentCity, setCurrentCity] = useState()
   const[success, isSuccess] = useState('false');
-  const[validLocation, isValidLocation] = useState();
 
   const key = "e91ab26fea321eaa5e3ede151671fa9d";
   const api = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid="+key;
@@ -40,7 +39,7 @@ function App()
       }
       else
       {
-        return <Weather city = {currentCity} forecast = {forecastData} tempType = "c"/>
+        return <Weather city = {forecastData.name} forecast = {forecastData} tempType = "c"/>
       }
     }
   }
