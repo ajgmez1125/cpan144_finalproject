@@ -6,13 +6,12 @@ import temp from './temp_json.json'
 
 function App() 
 {
-
   const[forecastData, setForecastData] = useState();
   const[currentCity, setCurrentCity] = useState()
   const[success, isSuccess] = useState('false');
 
   const key = "e91ab26fea321eaa5e3ede151671fa9d";
-  const api = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid="+key;
+  const api = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" +key;
 
   useEffect(() => {
     if(currentCity != undefined)
@@ -39,7 +38,7 @@ function App()
       }
       else
       {
-        return <Weather city = {forecastData.name} forecast = {forecastData} tempType = "c"/>
+        return <Weather forecast = {forecastData} tempType = "c"/>
       }
     }
   }
