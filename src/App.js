@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Weather from './Weather.js'
 import Search from './Search.js'
-import './styles.css'
+import temp from './temp_json.json'
 
 function App() 
 {
