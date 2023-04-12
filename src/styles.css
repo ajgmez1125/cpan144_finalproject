@@ -1,0 +1,18 @@
+html{
+    background-color: #491786;
+    color: #FAB704;
+}
+.App{
+    background: linear-gradient(135deg, #654ea3, #6a87e7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgb(41, 41, 41);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10px;
+}
+form{
+    padding: 10px;
+}

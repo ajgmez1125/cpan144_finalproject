@@ -2,16 +2,15 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Weather from './Weather.js'
 import Search from './Search.js'
-import temp from './temp_json.json'
+import './styles.css'
 
 function App() 
 {
   const[forecastData, setForecastData] = useState();
   const[currentCity, setCurrentCity] = useState()
-  const[success, isSuccess] = useState('false');
 
   const key = "e91ab26fea321eaa5e3ede151671fa9d";
-  const api = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" +key;
+  const api = "https://api.openweathermap.org/data/2.5/forecast?q=" + currentCity + "&appid=" +key;
 
   useEffect(() => {
     if(currentCity != undefined)
@@ -21,15 +20,14 @@ function App()
       .then((response) => response.json())
       .then((json) => {
         setForecastData(json)
-        isSuccess(true)
       })
-      .catch(isSuccess(false))
+      .catch(setForecastData(null))
     }
   }, [currentCity])
 
   const renderScreen = () =>
   {
-    if(success === true)
+    if(forecastData != null)
     {
       if(forecastData.cod === '404')
       {
@@ -38,7 +36,7 @@ function App()
       }
       else
       {
-        return <Weather forecast = {forecastData} tempType = "c"/>
+        return <Weather forecast = {forecastData}/>
       }
     }
   }

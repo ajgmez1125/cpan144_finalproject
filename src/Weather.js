@@ -1,54 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import TemperatureSwitch from './TemperatureSwitch.js';
+import Panel from './Panel.js'
 
 function Weather(props)
 {
+    // const[panels, setPanels] = useState([]);
     const[city, setCity] = useState();
-    const[weatherType, setWeatherType] = useState();
-    const[description, setDescription] = useState();
-    const[temperature, setTemperature] = useState();
-    const[feelsLike, setFeelsLike] = useState();
-    const[tempType, setTempType] = useState();
-    const deg = '\u00B0'
+    const[allForecasts, setAllForecasts] = useState()
+    const[unit, setUnit] = useState();
 
     useEffect(() => {
-        setTempType(props.tempType)
-        setCity(props.city)
-        setWeatherType(props.forecast.weather[0].main)
-        setDescription(props.forecast.weather[0].description)
+        setCity(props.forecast.city.name)
+        setAllForecasts(props.forecast)
     }, [])
 
-    useEffect(() => {
-        setTemperature(adjustTemp(props.forecast.main.temp))
-        setFeelsLike(adjustTemp(props.forecast.main.feels_like));
-    }, [tempType])
-
-    const adjustTemp = (temp) =>
-    {
-        var adjustedTemp = temp;
-        if(tempType === 'c')
+    const returnPanel = () => {
+        if(allForecasts !== undefined)
         {
-            adjustedTemp = temp - 273.15
+            return <Panel forecast = {allForecasts.list[0]} unit = {unit}/>
         }
-        if(tempType === 'f')
-        {
-            adjustedTemp = (temp - 273.15) * 9/5 + 32;
-        }
-        if(tempType === 'k')
-        {
-            adjustedTemp = temp;
-        }
-        return Math.floor(adjustedTemp);
     }
 
     return(
         <div>
             <h1>{city}</h1>
-            <h3>{weatherType}</h3>
-            <p>{description}</p>
-            <h4>It is {temperature + deg}{tempType}</h4>
-            <h4>Feels like {feelsLike + deg}{tempType}</h4>
-            <TemperatureSwitch switcher = {setTempType}/>
+            {
+                returnPanel(0)
+            }
+            <TemperatureSwitch switcher = {setUnit}/>
         </div>
     )
 }
