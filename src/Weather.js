@@ -4,26 +4,25 @@ import Panel from './Panel.js'
 
 function Weather(props)
 {
-    // const[panels, setPanels] = useState([]);
     const[city, setCity] = useState();
-    const[allForecasts, setAllForecasts] = useState()
+    const[country, setCountry] = useState('test');
     const[unit, setUnit] = useState();
 
     useEffect(() => {
         setCity(props.forecast.city.name)
-        setAllForecasts(props.forecast)
+        setCountry(props.forecast.city.country)
     }, [])
 
     const returnPanel = () => {
-        if(allForecasts !== undefined)
+        if(props.forecast !== undefined)
         {
-            return <Panel forecast = {allForecasts.list[0]} unit = {unit}/>
+            return <Panel forecast = {props.forecast.list[0]} unit = {unit}/>
         }
     }
 
     return(
         <div>
-            <h1>{city}</h1>
+            <h1>{city} {country}</h1>
             {
                 returnPanel(0)
             }
