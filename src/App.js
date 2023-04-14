@@ -7,13 +7,14 @@ import './styles.css'
 function App() 
 {
   const[forecastData, setForecastData] = useState();
-  const[currentCity, setCurrentCity] = useState()
+  const[city, setCity] = useState()
+  const[country, setCountry] = useState("")
 
   const key = "e91ab26fea321eaa5e3ede151671fa9d";
-  const api = "https://api.openweathermap.org/data/2.5/forecast?q=" + currentCity + "&appid=" +key;
+  const api = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "," + country + "&appid=" +key;
 
   useEffect(() => {
-    if(currentCity != undefined)
+    if(city !== undefined)
     {
       console.log(api)
       fetch(api)
@@ -23,7 +24,7 @@ function App()
       })
       .catch(setForecastData(null))
     }
-  }, [currentCity])
+  }, [city, country])
 
   const renderScreen = () =>
   {
@@ -46,7 +47,7 @@ function App()
       {
         renderScreen()
       }
-      <Search search = {setCurrentCity} />
+      <Search searchCity = {setCity} searchCountry = {setCountry} />
     </div>
   );
 }
