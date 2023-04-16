@@ -20,50 +20,40 @@ function Panel(props)
 
         setWeatherType(props.forecast.weather[0].main)
         setDescription(props.forecast.weather[0].description)
-        // setWeatherImg();
 
         setTemperature(adjustTemp(props.forecast.main.temp))
         setFeelsLike(adjustTemp(props.forecast.main.feels_like));
 
         setHumidity(props.forecast.main.humidity)
-        setWindSpeed(props.forecast.wind.speed)
-    }, [props.unit])
-
-    // const setWeatherImg = () =>
-    // {
-    //     switch(weatherType)
-    //     {
-    //         case "cloudy":
-    //             break;
-    //         case "rainy":
-    //             break;
-    //         case "clear":
-    //             break;
-    //         case "windy":
-    //             break;
-    //         case "sunny":
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+        setWindSpeed(adjustSpeed(props.forecast.wind.speed))
+    }, [props.measurementUnit])
 
     const adjustTemp = (temp) =>
     {
         var adjustedTemp = temp;
-        if(props.unit === 'c')
+        if(props.measurementUnit === 'metric')
         {
             adjustedTemp = temp - 273.15
         }
-        if(props.unit === 'f')
+        if(props.measurementUnit === 'imperial')
         {
             adjustedTemp = (temp - 273.15) * 9/5 + 32;
         }
-        if(props.unit === 'k')
-        {
-            adjustedTemp = temp;
-        }
         return Math.floor(adjustedTemp);
+    }
+
+    const adjustSpeed = (speed) => {
+        var adjustedSpeed;
+        switch(props.measurementUnit)
+        {
+            case 'metric':
+                adjustedSpeed = speed * 3.6
+            break;
+            case 'imperial':
+                adjustedSpeed = (speed * 3.6) * 0.621371
+            break;
+        }
+        return Math.round(adjustedSpeed)
     }
 
     return(
@@ -72,10 +62,10 @@ function Panel(props)
             <h2>{weatherType}</h2>
             <p>{description}</p>
             <div class = 'temperature_subpanel'>
-                <h4>Temperature is {temperature + deg}{props.unit}</h4>
-                <h4>Feels like {feelsLike + deg}{props.unit}</h4>
+                <h4>Temperature is {temperature + deg}{props.tempUnit}</h4>
+                <h4>Feels like {feelsLike + deg}{props.tempUnit}</h4>
                 <h4>Humidity: {humidity}%</h4>
-                <h4>Wind speed: {windSpeed}mp/h</h4>
+                <h4>Wind speed: {windSpeed}{props.speedUnit}</h4>
             </div>
         </div>
     )

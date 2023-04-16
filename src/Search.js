@@ -1,14 +1,23 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-function Search(props)
+function Search()
 {
     const[citySearch, setCitySearch] = useState('')
     const[countrySearch, setCountrySearch] = useState('')
 
+    const nav = useNavigate()
+
     const submitHandler = (e) => {
         e.preventDefault();
-        props.searchCity(citySearch)
-        props.searchCountry(countrySearch)
+        if(countrySearch != '')
+        {
+            nav('weather/'+citySearch+'/'+countrySearch)
+        }
+        else
+        {
+            nav('weather/'+citySearch)
+        }
         setCitySearch('');
         setCountrySearch('');
     }

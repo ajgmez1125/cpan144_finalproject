@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react'
 
 function TemperatureSwitch(props)
 {
-    const[currentUnit, setCurrentUnit] = useState('c');
+    const[measurementSystem, setMeasurementSystem] = useState('metric');
+
     useEffect(() => {
-        props.switcher(currentUnit)
-    }, [currentUnit])
+        props.switcher(measurementSystem)
+    }, [measurementSystem])
 
     return(
         <div>
-            <input name = 'c' type = 'button' value = 'Celsius' onClick={(e) => setCurrentUnit(e.target.name)}/>
-            <input name = 'f' type = 'button' value = 'Fahrenheit' onClick={(e) => setCurrentUnit(e.target.name)}/>
-            <input name = 'k' type = 'button' value = 'Kelvin' onClick={(e) => setCurrentUnit(e.target.name)}/>
+            <input name = 'metric' type = 'button' value = 'Metric' onClick={(e) => setMeasurementSystem(e.target.name)}/>
+            <input name = 'imperial' type = 'button' value = 'Imperial' onClick={(e) => setMeasurementSystem(e.target.name)}/>
         </div>
     )
 }
