@@ -2,7 +2,7 @@ html{
     background-color: #491786;
     color: #FAB704;
 }
-.App{
+.weather_panel{
     background: linear-gradient(135deg, #654ea3, #6a87e7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -13,6 +13,14 @@ html{
     margin-right: 20%;
     margin-top: 10px;
 }
+
+.temperature_subpanel{
+    margin: 20px;
+    text-align: left;
+    font-size: 20px;
+}
+
+
 form{
     padding: 10px;
 }
