@@ -12,11 +12,11 @@ function Search()
         e.preventDefault();
         if(countrySearch != '')
         {
-            nav('weather/'+citySearch+'/'+countrySearch)
+            nav('../weather/'+citySearch+'/'+countrySearch)
         }
         else
         {
-            nav('weather/'+citySearch)
+            nav('../weather/'+citySearch)
         }
         setCitySearch('');
         setCountrySearch('');
