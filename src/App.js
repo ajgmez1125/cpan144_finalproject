@@ -49,6 +49,7 @@ function App()
       }
       <Search searchCity = {setCity} searchCountry = {setCountry} />
     </div>
+
   );
 }
 

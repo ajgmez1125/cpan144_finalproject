@@ -24,12 +24,15 @@ function Search(props)
     }
 
     return(
+    <div className='form'>
         <form id = 'search_form' onSubmit = {submitHandler}>
             <input type = 'text' onChange = {(e) => {setCitySearch(e.target.value)}} value = {citySearch} required/>
             <input style = {{width: "20px"}} type = 'text' onChange = {(e) => {setCountrySearchValue(e.target.value)}} value = {countrySearch} />
             <br />
             <input type = 'submit'/>
         </form>
+        
+    </div>
     )
 }
 

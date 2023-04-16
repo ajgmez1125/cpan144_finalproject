@@ -1,11 +1,25 @@
-html{
-    background-color: #491786;
-    color: #FAB704;
+:root {
+    --bgcolor: #491786;
+    --text-color: #FAB704;
 }
-.App{
+
+
+/* html{
+    background-color: var(--bgcolor);
+    color: var(--text-color);
+} */
+
+form{
+    padding: 10px;
+}
+.bgimg{
+    height: 100%;
+    width: 100%;
+}
+
+.form{
     background: linear-gradient(135deg, #654ea3, #6a87e7);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
     border: 1px solid rgb(41, 41, 41);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -13,6 +27,7 @@ html{
     margin-right: 20%;
     margin-top: 10px;
 }
-form{
-    padding: 10px;
+body{
+    background-color: var(--bgcolor);
+    color: var(--text-color);
 }
