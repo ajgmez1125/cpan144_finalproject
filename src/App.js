@@ -9,8 +9,8 @@ import Error from './Error.js'
 function App() 
 {
   return (
-    <div>
-      <Link to='/'> Home </Link>
+    <div className='app'>
+      <Link to='/' className='home-button'> Home </Link>
       <Routes>
         <Route path = '/' element = {<Home />}/>
         <Route path = '/weather/:cityParam' element={<Forecast />}/>
