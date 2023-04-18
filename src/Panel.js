@@ -1,4 +1,12 @@
 import { useState, useEffect } from 'react'
+import './styles.css'
+import thunderstorm from './thunderstorm.png'
+import drizzle from './drizzle.png'
+import rain from './rain.png'
+import snow from './snow.png'
+import atmosphere from './atmosphere.png'
+import clear from './clear.png'
+import clouds from'./clouds.png'
 
 function Panel(props)
 {
@@ -14,6 +22,7 @@ function Panel(props)
     
     const[time, setTime] = useState();
     const deg = '\u00B0'
+    const [weatherImg, setWeatherImg] = useState();
 
     useEffect(() => {
         setTime(props.forecast.dt_txt)
@@ -26,7 +35,34 @@ function Panel(props)
 
         setHumidity(props.forecast.main.humidity)
         setWindSpeed(adjustSpeed(props.forecast.wind.speed))
+        
     }, [props.measurementUnit])
+
+    useEffect(() => {
+        switch (weatherType) {
+            case 'Thunderstorm':
+                setWeatherImg(thunderstorm)
+                break;
+            case 'Drizzle':
+                setWeatherImg(drizzle)
+                break;
+            case 'Rain':
+                setWeatherImg(rain)
+                break;
+            case 'Snow':
+                setWeatherImg(snow)
+                break;
+            case 'Atmosphere':
+                setWeatherImg(atmosphere)
+                break;
+            case 'Clear':
+                setWeatherImg(clear)
+                break;
+            case 'Clouds':
+                setWeatherImg(clouds)
+                break;
+        }
+    },[weatherType])
 
     const adjustTemp = (temp) =>
     {
@@ -56,8 +92,10 @@ function Panel(props)
         return Math.round(adjustedSpeed)
     }
 
+
+
     return(
-        <div class = 'weather_panel'>
+        <div class = 'weather_panel' style={{backgroundImage:`url(${weatherImg})`, backgroundSize: 'auto', backgroundRepeat: 'repeat'}}>
             <p>{time}</p>
             <h2>{weatherType}</h2>
             <p>{description}</p>
@@ -66,6 +104,7 @@ function Panel(props)
                 <h4>Feels like {feelsLike + deg}{props.tempUnit}</h4>
                 <h4>Humidity: {humidity}%</h4>
                 <h4>Wind speed: {windSpeed}{props.speedUnit}</h4>
+
             </div>
         </div>
     )

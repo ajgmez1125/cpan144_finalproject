@@ -56,7 +56,6 @@ function Weather(props)
             {
                 returnPanel()
             }
-            <TemperatureSwitch switcher = {setMeasurementUnit}/>
         </div>
     )
 }

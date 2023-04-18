@@ -34,10 +34,10 @@ function Search()
 
     return(
         <form id = 'search_form' onSubmit = {submitHandler}>
-            <input type = 'text' onChange = {(e) => {setCitySearch(e.target.value)}} value = {citySearch} required/>
-            <input style = {{width: "20px"}} type = 'text' onChange = {(e) => {setCountrySearchValue(e.target.value)}} value = {countrySearch} />
+            <input type = 'text' placeholder="Location..." onChange = {(e) => {setCitySearch(e.target.value)}} value = {citySearch} required/>
+            <input type = 'text' placeholder="Specific Country Code (Optional)" onChange = {(e) => {setCountrySearchValue(e.target.value)}} value = {countrySearch} />
             <br />
-            <input type = 'submit'/>
+            <input type = 'submit' class='button' value='search'/>
         </form>
     )
 }
